@@ -3,6 +3,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void PrintKeyWord(char *name, Word w, int round) {
+    int i;
+
+    printf("round[%.2d].%s\t", round, name);
+    for (i=0; i < 4; i++) {
+        printf("%.2x", w[i]);
+    }
+    printf("\n");
+}
+
+void PrintKey(char *name, Word rks[], int round) {
+    State s;
+    WordsToState(s, rks, round);
+    PrintState(round, name, s);
+}
+
 void PrintState(int round, char *name, State s) {
     int i;
     int j;

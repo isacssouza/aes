@@ -8,6 +8,8 @@
 int main(int argc, char **argv) {
     int round = 0;
     Word rks[4*11];
+    int i, j, read = 0;
+    unsigned int temp = 0;
 
     State s = { {0x00, 0x44, 0x88, 0xcc},
                 {0x11, 0x55, 0x99, 0xdd},
@@ -18,6 +20,17 @@ int main(int argc, char **argv) {
                 {0x01, 0x05, 0x09, 0x0d},
                 {0x02, 0x06, 0x0a, 0x0e},
                 {0x03, 0x07, 0x0b, 0x0f} };
+
+    if (argc > 1) {
+        for (i = 0; i < 4; i++) {
+            for (j = 0; j < 4; j++) {
+                scanf("%x", &temp);
+                k[j][i] = temp;
+                printf("%x\n", k[j][i]);
+            }
+        }
+    }
+
     
     PrintState(round, "input", s);
 

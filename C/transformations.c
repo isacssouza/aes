@@ -1,6 +1,8 @@
 #include "transformations.h"
+#include "util.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned char sbox[16][16] = 
 {
@@ -51,19 +53,24 @@ void KeyExpansion(State key, Word rks[4*11]) {
             rks[i][j] = key[j][i];
         }
     }
+    PrintKey("0", rks, 0);
 
-    for(r = 1; r <= 11; r++) {
-        int keyStart = r*4;
-        CopyWord(rks[keyStart-1], temp);
+    for(r = 4; r < 44; r++) {
+        CopyWord(rks[r-1], temp);
 
         if ((r % 4) == 0) {
             RotWord(temp);
+            PrintKeyWord("RotWord", temp, r);
             SubWord(temp);
-            XorWord(temp, Rcon[r/4]);
+            PrintKeyWord("SubWord", temp, r);
+            printf("Rcon[%d/4] %x\n", r, Rcon[r/4]);
+            temp[0] = temp[0] ^ Rcon[r/4];
+            PrintKeyWord("XorWord", temp, r);
         }
 
-        CopyWord(rks[keyStart-4], rks[keyStart]);
-        XorWords(rks[keyStart], temp);
+        CopyWord(rks[r-4], rks[r]);
+        XorWords(rks[r], temp);
+        PrintKeyWord("", rks[r], r);
     }
 }
 
