@@ -8,7 +8,7 @@
 int main(int argc, char **argv) {
     int round = 0;
     Word rks[4*11];
-    int i, j, read = 0;
+    int i, j;
     unsigned int temp = 0;
 
     State s = { {0x00, 0x44, 0x88, 0xcc},
@@ -42,10 +42,10 @@ int main(int argc, char **argv) {
     PrintState(round, "k_sch", curKey);
 
     AddRoundKey(s, curKey);
-    PrintState(round, "start", s);
 
     round = 1;
-    /*for (round = 1; round < 10; round++) {*/
+    for (round = 1; round < 10; round++) {
+        PrintState(round, "start", s);
         SubBytes(s);
         PrintState(round, "s_box", s);
         ShiftRows(s);
@@ -55,7 +55,18 @@ int main(int argc, char **argv) {
         WordsToState(curKey, rks, round);
         AddRoundKey(s, curKey);
         PrintState(round, "k_sch", curKey);
-    /*}*/
+    }
+
+    PrintState(round, "start", s);
+    SubBytes(s);
+    PrintState(round, "s_box", s);
+    ShiftRows(s);
+    PrintState(round, "s_row", s);
+    WordsToState(curKey, rks, round);
+    AddRoundKey(s, curKey);
+    PrintState(round, "k_sch", curKey);
+
+    PrintState(round, "output", s);
 
     return 0;
 }
