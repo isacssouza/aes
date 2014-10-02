@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void AesEnc(State s, State k, State *out) {
+void AesEnc(State s, State k, State out) {
     int round = 0;
     Word rks[4*11];
 
@@ -43,7 +43,7 @@ void AesEnc(State s, State k, State *out) {
     AddRoundKey(s, curKey);
     PrintState(round, "k_sch", curKey);
 
-    CopyState(s, *out);
+    CopyState(s, out);
 }
 
 int main(int argc, char **argv) {
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    AesEnc(s, k, &out);
+    AesEnc(s, k, out);
 
     PrintState(-1, "output", out);
 

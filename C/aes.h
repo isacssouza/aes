@@ -3,6 +3,6 @@
 
 #include "types.h"
 
-void AesEnc(State s, State k, State *out);
+void AesEnc(State s, State k, State out);
 
 #endif /* __AES_H */
