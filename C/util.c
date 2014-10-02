@@ -61,7 +61,7 @@ void CopyState(State s0, State s1) {
     }
 }
 
-unsigned char mult2(unsigned char n1) {
+byte mult2(byte n1) {
     unsigned short res = n1;
 
     res = res << 1;
@@ -69,5 +69,5 @@ unsigned char mult2(unsigned char n1) {
         res = res ^ 0x011b;
     }
 
-    return (unsigned char) res;
+    return (byte) res;
 }

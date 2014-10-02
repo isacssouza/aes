@@ -12,9 +12,9 @@ void CopyState(State s0, State s1);
 void CopyWord(Word w0, Word w1);
 void RotWord(Word w);
 void SubWord(Word w);
-void XorWord(Word w0, unsigned char w1);
+void XorWord(Word w0, byte w1);
 void XorWords(Word w0, Word w1);
 void KeyExpansion(State key, Word rks[4*11]);
-unsigned char mult2(unsigned char n1);
+byte mult2(byte n1);
 
 #endif /* __TRANSFORMATIONS_H */
