@@ -64,6 +64,14 @@ void XorWords(Word w0, Word w1) {
     }
 }
 
+void XorStates(State s0, State s1) {
+    int i;
+
+    for (i = 0; i < 4; i++) {
+        XorWords(s0[i], s1[i]);
+    }
+}
+
 void XorWord(Word w0, byte val) {
     int i;
 

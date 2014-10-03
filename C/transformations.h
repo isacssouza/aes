@@ -14,6 +14,7 @@ void RotWord(Word w);
 void SubWord(Word w);
 void XorWord(Word w0, byte w1);
 void XorWords(Word w0, Word w1);
+void XorStates(State s0, State s1);
 void KeyExpansion(State key, Word rks[4*11]);
 byte mult2(byte n1);
 

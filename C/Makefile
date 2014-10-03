@@ -1,17 +1,25 @@
 CC=gcc
 CFLAGS=-c -Wall -g
 LDFLAGS=
-SOURCES=aes.c transformations.c util.c
+SOURCES=transformations.c util.c
+SOURCES_AES=aes.c aes_cmd.c
+SOURCES_CBC=aes.c cbc.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=aes
+OBJECTS_AES=$(OBJECTS) $(SOURCES_AES:.c=.o)
+OBJECTS_CBC=$(OBJECTS) $(SOURCES_CBC:.c=.o)
+EXECUTABLE_AES=aes
+EXECUTABLE_CBC=cbc
 
-all: $(SOURCES) $(EXECUTABLE)
+all: $(SOURCES) $(EXECUTABLE_AES) $(EXECUTABLE_CBC)
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
-		
-$(EXECUTABLE): $(OBJECTS) 
-		$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+$(EXECUTABLE_AES): $(OBJECTS_AES)
+	$(CC) $(LDFLAGS) $(OBJECTS_AES) -o $@
+
+$(EXECUTABLE_CBC): $(OBJECTS_CBC)
+	$(CC) $(LDFLAGS) $(OBJECTS_CBC) -o $@
 
 .c.o:
-		$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
